@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/temperature")
+@CrossOrigin("*")
 public class TemperatureController {
 
     @Autowired
