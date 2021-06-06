@@ -1,9 +1,7 @@
 package co.com.ingenieria.proyecto_integrador.service.impl;
 
 import co.com.ingenieria.proyecto_integrador.dto.HumidityDto;
-import co.com.ingenieria.proyecto_integrador.dto.TemperatureDto;
 import co.com.ingenieria.proyecto_integrador.entity.Humidity;
-import co.com.ingenieria.proyecto_integrador.entity.Temperature;
 import co.com.ingenieria.proyecto_integrador.repository.IHumidityRepository;
 import co.com.ingenieria.proyecto_integrador.service.IHumidityService;
 import co.com.ingenieria.proyecto_integrador.utils.GenerarCodigo;
@@ -58,7 +56,7 @@ public class HumidityServiceImpl implements IHumidityService {
 
     @Override
     public void deleteHumidity(String humidityCode) throws Exception {
-        Optional<Humidity> humidity = iHumidityRepository.findByCode(humidityCode);
+        Optional<Humidity> humidity = iHumidityRepository.findByHumidityCode(humidityCode);
 
         if (humidity.isPresent()) {
             iHumidityRepository.delete(humidity.get());
