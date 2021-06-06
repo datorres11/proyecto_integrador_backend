@@ -11,9 +11,8 @@ import java.util.Optional;
 @Repository
 public interface IHumidityRepository extends MongoRepository<Humidity,Integer > {
 
-    @Query("Select humidity FROM Humidity humidity where humidity.city= :city")
+
     public List<Humidity> findByCity(String city);
 
-    @Query("Select humidity FROM Humidity humidity where humidity.city= :humidityCode")
-    public Optional<Humidity> findByCode(String humidityCode);
+    public Optional<Humidity> findByHumidityCode(String humidityCode);
 }
