@@ -10,5 +10,5 @@ public interface ILocationService {
 
     public void createLocation(String city, String country, String cityCode);
 
-    public void deleteLocation(String cityCode);
+    public void deleteLocation(String city);
 }

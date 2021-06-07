@@ -45,12 +45,15 @@ public class LocationServiceImpl implements ILocationService {
 
     @Override
     public void createLocation(String city, String country, String cityCode) {
-        Location location=Location.builder().id(iLocationRepository.findAll().size()+1)
-                                            .city(city)
-                                            .country(country)
-                                            .cityCode(cityCode)
-                                            .build();
-        iLocationRepository.save(location);
+        Optional<Location> locationEntity=iLocationRepository.findByCity(city);
+        if(!locationEntity.isPresent()) {
+            Location location = Location.builder().id(iLocationRepository.findAll().size() + 1)
+                    .city(city)
+                    .country(country)
+                    .cityCode(cityCode)
+                    .build();
+            iLocationRepository.save(location);
+        }
     }
 
     @Override

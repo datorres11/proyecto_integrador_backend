@@ -32,9 +32,9 @@ public class TemperatureController {
     }
 
     @DeleteMapping("/{TemeperatureCode}")
-    public ResponseEntity<?> deleteHumidity(@PathVariable String humidityCode) {
+    public ResponseEntity<?> deleteHumidity(@PathVariable String TemeperatureCode) {
         try{
-            iTemperatureService.deleteTemperature(humidityCode);
+            iTemperatureService.deleteTemperature(TemeperatureCode);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(e.getCause(),HttpStatus.CONFLICT);

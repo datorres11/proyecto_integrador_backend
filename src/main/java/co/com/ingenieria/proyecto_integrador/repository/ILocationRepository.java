@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ILocationRepository extends MongoRepository<Location,Float> {
+public interface ILocationRepository extends MongoRepository<Location,Integer> {
 
-    public Optional<Location> findByCityCode(String cityCode);
+    public Optional<Location> findByCityCode(String city);
+
+    public Optional<Location> findByCity(String city);
 }
