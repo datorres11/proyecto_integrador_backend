@@ -3,6 +3,7 @@ package co.com.ingenieria.proyecto_integrador.service.impl;
 
 import co.com.ingenieria.proyecto_integrador.service.IApiService;
 import co.com.ingenieria.proyecto_integrador.service.IHumidityService;
+import co.com.ingenieria.proyecto_integrador.service.ILocationService;
 import co.com.ingenieria.proyecto_integrador.service.ITemperatureService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -25,6 +26,9 @@ public class ApiServiceImpl implements IApiService {
     @Autowired
     ITemperatureService iTemperatureService;
 
+    @Autowired
+    ILocationService iLocationService;
+
     @Override
     public void getHumidityAndTemperatureApi(String city) {
         String API_KEY="4fb0fa5b3a3c6daac1d4563a44d914c6";
@@ -42,9 +46,11 @@ public class ApiServiceImpl implements IApiService {
 
             Map<String, Object> respMap = jsonToMap(result.toString());
             Map<String, Object> mainMap = jsonToMap(respMap.get("main").toString());
+            Map<String, Object> sysMap = jsonToMap(respMap.get("sys").toString());
 
             iTemperatureService.createTemperatures(mainMap.get("temp").toString(),city);
             iHumidityService.createHumidity(mainMap.get("humidity").toString(),city);
+            iLocationService.createLocation(city,sysMap.get("country").toString(),respMap.get("id").toString());
 
 
         }catch (Exception e){

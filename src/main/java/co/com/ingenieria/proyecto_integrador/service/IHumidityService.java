@@ -15,5 +15,7 @@ public interface IHumidityService {
 
     public void deleteHumidity(String humidityCode) throws Exception;
 
+    public HumidityDto getHumidityPromByCity(String city);
+
 
 }

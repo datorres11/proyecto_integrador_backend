@@ -5,6 +5,7 @@ import co.com.ingenieria.proyecto_integrador.entity.Humidity;
 import co.com.ingenieria.proyecto_integrador.repository.IHumidityRepository;
 import co.com.ingenieria.proyecto_integrador.service.IHumidityService;
 import co.com.ingenieria.proyecto_integrador.utils.GenerarCodigo;
+import co.com.ingenieria.proyecto_integrador.utils.HumidityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,5 +64,21 @@ public class HumidityServiceImpl implements IHumidityService {
         }else{
             throw new Exception("El dato humedad ha sido eliminado");
         }
+    }
+
+    @Override
+    public HumidityDto getHumidityPromByCity(String city) {
+        float prom=0;
+        List<Humidity> humidities= iHumidityRepository.findByCity(city);
+        for(Humidity humidity:humidities){
+            prom+=humidity.getHumidity();
+        }
+        prom=prom/humidities.size();
+        HumidityDto humidityDto=HumidityDto.builder()
+                                .humidity(prom)
+                                .city(city)
+                                .humidityCode("")
+                                .build();
+        return humidityDto;
     }
 }

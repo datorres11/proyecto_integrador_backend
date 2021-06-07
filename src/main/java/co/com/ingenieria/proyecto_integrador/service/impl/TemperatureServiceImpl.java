@@ -64,4 +64,21 @@ public class TemperatureServiceImpl implements ITemperatureService {
             throw new Exception("El dato temperatura ha sido eliminado");
         }
     }
+
+    @Override
+    public TemperatureDto getTemperaturePromByCity(String city) {
+        float prom=0;
+        List<Temperature> temperatures= iTemperatureRepository.findByCity(city);
+        for(Temperature temperature:temperatures){
+            prom+=temperature.getTemperature();
+        }
+        prom=prom/temperatures.size();
+        TemperatureDto temperatureDto=TemperatureDto.builder()
+                .temperature(prom)
+                .city(city)
+                .temperatureCode("")
+                .build();
+
+        return temperatureDto;
+    }
 }

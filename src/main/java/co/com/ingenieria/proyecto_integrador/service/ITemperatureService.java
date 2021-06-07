@@ -14,4 +14,6 @@ public interface ITemperatureService {
     public List<TemperatureDto> getTemperaturesByCity(String city);
 
     public void deleteTemperature(String temperatureCode) throws Exception;
+
+    public TemperatureDto getTemperaturePromByCity(String city);
 }

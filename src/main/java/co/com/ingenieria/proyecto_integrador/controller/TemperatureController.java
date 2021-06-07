@@ -25,6 +25,12 @@ public class TemperatureController {
 
     }
 
+    @GetMapping("/prom/{city}")
+    public ResponseEntity<?> getTemperaturePromByCity(@PathVariable String city) {
+        return ResponseEntity.ok(iTemperatureService.getTemperaturePromByCity(city));
+
+    }
+
     @DeleteMapping("/{TemeperatureCode}")
     public ResponseEntity<?> deleteHumidity(@PathVariable String humidityCode) {
         try{
